@@ -1,0 +1,3 @@
+This is the RF transmitter sensor module that it operates at its own. This runs on a Arduino Nano with ATMega168 microcontroller.
+
+This module will be polling over its own wired sensors (PIR and magnetic), and when any are triggered, will notify the central unit through a RF transmitter.
