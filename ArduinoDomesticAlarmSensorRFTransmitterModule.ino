@@ -1,23 +1,32 @@
 #include <VirtualWire.h>
 
-const int pinInputSensor = 2;
+const int pinInputSensor1 = 2;
+const int pinInputSensor2 = 3;
 const int pinOutputLed = 13;
 
 void setup() {                
-  pinMode(pinInputSensor, INPUT);     
+  pinMode(pinInputSensor1, INPUT);     
+  pinMode(pinInputSensor2, INPUT);     
   pinMode(pinOutputLed, OUTPUT);  
 
   vw_setup(2000); //Bits per sec  
+
+  digitalWrite(pinOutputLed, LOW);
 }
 
 void loop() {
-  if (digitalRead(pinInputSensor) == HIGH) {
+  if (IsSensorTriggered()){
     digitalWrite(pinOutputLed, HIGH);
     SendMessageToReceiver();
     digitalWrite(pinOutputLed, LOW);
   }  
+}
+
+boolean IsSensorTriggered(){
+  if ((digitalRead(pinInputSensor1) == HIGH) || ((digitalRead(pinInputSensor2) == HIGH)))
+    return true;
   else
-    digitalWrite(pinOutputLed, LOW);
+    return false;
 }
 
 void SendMessageToReceiver(){
